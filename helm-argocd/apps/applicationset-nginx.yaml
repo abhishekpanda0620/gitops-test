@@ -22,7 +22,7 @@ spec:
         path: helm-argocd/nginx-chart
         helm:
           valueFiles:
-            - ../../envs/{{ env }}/values.yaml
+            - envs/{{ env }}/values.yaml
           releaseName: nginx-{{ env }}
       destination:
         server: https://kubernetes.default.svc

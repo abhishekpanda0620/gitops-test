@@ -14,7 +14,7 @@ This repository demonstrates a simple GitOps workflow using **Argo CD** on a loc
 
 ## 📦 Folder Structure
 
-k8s/
+k8s
 ├── deployment.yaml # NGINX deployment
 └── service.yaml # NodePort service
 

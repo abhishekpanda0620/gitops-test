@@ -1,5 +1,12 @@
 replicaCount: 1
 image:
+  repository: nginx
   tag: latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+
 pageTitle: "Dev Environment"
 pageMessage: "Welcome to the Dev environment!"

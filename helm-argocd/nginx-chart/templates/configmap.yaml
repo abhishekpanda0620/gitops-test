@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-index-html
+  name: {{ .Release.Name }}-index-html
 data:
   index.html: |
     <html>
-    <head><title>{{ .Values.pageTitle }}</title></head>
-    <body>
-      <h1>{{ .Values.pageMessage }}</h1>
-    </body>
+      <head><title>{{ .Values.pageTitle }}</title></head>
+      <body>
+        <h1>{{ .Values.pageMessage }}</h1>
+      </body>
     </html>
