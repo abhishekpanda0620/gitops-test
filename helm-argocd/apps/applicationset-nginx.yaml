@@ -1,0 +1,33 @@
+# apps/applicationset-nginx.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nginx-multi-env
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+          - env: staging
+          - env: prod
+  template:
+    metadata:
+      name: nginx-{{ env }}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/abhishekpanda0620/gitops-test
+        targetRevision: HEAD
+        path: helm-argocd/nginx-chart
+        helm:
+          valueFiles:
+            - ../../envs/{{ env }}/values.yaml
+          releaseName: nginx-{{ env }}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: {{ env }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

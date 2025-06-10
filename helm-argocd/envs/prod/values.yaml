@@ -1,5 +1,5 @@
-replicaCount: 3
+replicaCount: 2
 image:
   tag: latest
-service:
-  type: NodePort
+pageTitle: "Production"
+pageMessage: "Welcome to Production."
