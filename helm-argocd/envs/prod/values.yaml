@@ -1,0 +1,5 @@
+replicaCount: 3
+image:
+  tag: latest
+service:
+  type: NodePort
