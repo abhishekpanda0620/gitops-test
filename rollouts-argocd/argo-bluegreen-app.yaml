@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/abhishekpanda0620/gitops-test
     targetRevision: HEAD
-    path: nginx-bluegreen
+    path: rollouts-argocd/nginx-bluegreen
     helm:
       releaseName: nginx-bluegreen
   destination:
