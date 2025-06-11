@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+  # 👇 Blue-Green strategy starts here
+  strategy:
+    blueGreen:
+      activeService: {{ .Values.service.active }}
+      previewService: {{ .Values.service.preview }}
+      autoPromotionEnabled: false
+  containers:
+    - name: nginx
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      ports:
+        - containerPort: 80

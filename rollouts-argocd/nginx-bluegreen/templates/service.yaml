@@ -1,0 +1,24 @@
+#Blue Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.active }}
+spec:
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - port: 80
+      targetPort: 80
+---
+#Green Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.preview }}
+spec:
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - port: 80
+      targetPort: 80

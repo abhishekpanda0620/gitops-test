@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-bluegreen
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/abhishekpanda0620/gitops-test
+    targetRevision: HEAD
+    path: nginx-bluegreen
+    helm:
+      releaseName: nginx-bluegreen
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
